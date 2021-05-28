@@ -17,7 +17,7 @@ public class ChooseGame extends AppCompatActivity {
         setContentView(R.layout.activity_choose_game);
 
         //Obtain references to objects
-        objTextViewTags = (TextView) findViewById(R.id.textViewTags);
+//        objTextViewTags = (TextView) findViewById(R.id.textViewTags);
 
         //Get Bundle from the Intent
         Bundle extras = getIntent().getExtras();
@@ -31,7 +31,7 @@ public class ChooseGame extends AppCompatActivity {
             Log.d("SayHelloNewScreen.java",tagsText.toString());
 
             //Update the UI
-            objTextViewTags.setText("You passed the tag: " + tagsText);
+//            objTextViewTags.setText("You passed the tag: " + tagsText);
         }
     }
 
