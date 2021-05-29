@@ -6,41 +6,38 @@ public class Game {
     private float _rating;
     private  int _playtime;
     private String _genre;
-    private String _tags;
+    private String _platforms;
     private String _released;
     private String _image;
+    private String _description;
+    private String _developer;
+    private String _website;
 
 
     public Game() {
     }
 
-    public Game(int id, String name, float rating, int playtime, String genre, String tags, String released, String image) {
-        this.setID(id);
+    public Game(int id, String name, float rating, int playtime, String genre, String platforms, String released, String image, String description, String developer, String website) {
+        this._id = id;
         this._name = name;
         this._rating = rating;
         this._playtime = playtime;
         this._genre = genre;
-        this._tags = tags;
+        this._platforms = platforms;
         this._released = released;
         this._image = image;
-    }
+        this._description = description;
+        this._developer = developer;
+        this._website = website;
 
-    public Game(String name, float rating, int playtime, String genre, String tags, String released, String image) {
-        this._name = name;
-        this._rating = rating;
-        this._playtime = playtime;
-        this._genre = genre;
-        this._tags = tags;
-        this._released = released;
-        this._image = image;
     }
 
     public int getID() {
-        return _id;
+        return this._id;
     }
 
-    public void setID(int _id) {
-        this._id = _id;
+    public void setID(int id) {
+        this._id = id;
     }
 
     public void setName(String name) {
@@ -75,12 +72,12 @@ public class Game {
         return this._genre;
     }
 
-    public void setTags(String tags) {
-        this._tags = tags;
+    public void setTags(String platforms) {
+        this._platforms = platforms;
     }
 
     public String getTags() {
-        return this._tags;
+        return this._platforms;
     }
 
     public void setReleased(String released) {
@@ -97,5 +94,29 @@ public class Game {
 
     public String getImage() {
         return this._image;
+    }
+
+    public String getDescription() {
+        return this._description;
+    }
+
+    public void setDescription(String description) {
+        this._description = description;
+    }
+
+    public String getDeveloper() {
+        return this._developer;
+    }
+
+    public void setDeveloper(String developer) {
+        this._developer = developer;
+    }
+
+    public String getWebsite() {
+        return this._website;
+    }
+
+    public void setWebsite(String website) {
+        this._website = website;
     }
 }

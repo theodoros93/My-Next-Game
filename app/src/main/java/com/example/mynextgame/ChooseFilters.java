@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import java.util.ArrayList;
+
 public class ChooseFilters extends AppCompatActivity {
     EditText objEditTextTags;
-//    TextView objTextViewName;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +55,15 @@ public class ChooseFilters extends AppCompatActivity {
         Intent i = new Intent (this , ChooseGame.class);
         //Pass data to the ChooseFilters Activity through the Intent
         CharSequence tagsText = objEditTextTags.getText();
+
         i.putExtra("savedTagsText", tagsText);
 
+        String[] tagsArray = {"singleplayer", "roguelike"};
+        String[] genresArray = {};
+        String titleString = "binding ";
+        i.putExtra("savedTagsArray", tagsArray);
+        i.putExtra("savedGenresArray", genresArray);
+        i.putExtra("savedTitleString", titleString);
         //Ask Android to start the new Activity
         startActivity(i);
     }
