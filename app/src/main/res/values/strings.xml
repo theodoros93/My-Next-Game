@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">MyNextGame</string>
+    <string name="prompt">Choose a platform</string>
+    <string-array name="Platforms">
+        <item>---Choose Platform---</item>
+        <item>Xbox 360</item>
+        <item>Playstation 4</item>
+        <item>Playstation 5</item>
+        <item>Steam</item>
+        <item>Epic Games</item>
+    </string-array>
+</resources>
