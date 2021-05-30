@@ -62,7 +62,6 @@ public class ViewLibrary extends AppCompatActivity {
         new ItemTouchHelper((itemTouchHelperCallback)).attachToRecyclerView(recyclerView);
         recyclerView.setAdapter(adapter);
     }
-
     // using SimpleCallBack swipe functionality (only for swipe right action on Recyclerview Item)
     ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
         @Override
