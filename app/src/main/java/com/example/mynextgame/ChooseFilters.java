@@ -4,13 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import java.util.ArrayList;
 
 public class ChooseFilters extends AppCompatActivity {
     EditText objEditTextTags;
+    private Spinner spinner1;
+
 
 
     @Override
@@ -18,25 +22,47 @@ public class ChooseFilters extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_filters);
 
-        //Obtain references to objects
-        objEditTextTags = findViewById(R.id.editTextTags);
-//        objTextViewName = findViewById(R.id.textViewNameNewScreen);
+        addListenerOnButton();
+        addListenerOnSpinnerItemSelection();
 
-        if (savedInstanceState != null){
-            //Retrieve data from the Bundle (other methods include getInt(), getBoolean() etc)
-            CharSequence tagsText = savedInstanceState.getCharSequence("savedTagsText");
-            //CharSequence displayText = savedInstanceState.getCharSequence("savedDisplayText");
+//        //Obtain references to objects
+//        objEditTextTags = findViewById(R.id.editTextTags);
+////        objTextViewName = findViewById(R.id.textViewNameNewScreen);
+//
+//        if (savedInstanceState != null){
+//            //Retrieve data from the Bundle (other methods include getInt(), getBoolean() etc)
+//            CharSequence tagsText = savedInstanceState.getCharSequence("savedTagsText");
+//            //CharSequence displayText = savedInstanceState.getCharSequence("savedDisplayText");
+//
+//            //Restore the dynamic state of the UI
+//            objEditTextTags.setText(tagsText);
+////            objTextViewName.setText(displayText);
+//        }
+//        else{
+//            //Initialize the UI
+//            objEditTextTags.setText("");
+//            objEditTextTags.setHint("example: singleplayer");
+////            objTextViewName.setText("TextView");
+//        }
+    }
 
-            //Restore the dynamic state of the UI
-            objEditTextTags.setText(tagsText);
-//            objTextViewName.setText(displayText);
-        }
-        else{
-            //Initialize the UI
-            objEditTextTags.setText("");
-            objEditTextTags.setHint("example: singleplayer");
-//            objTextViewName.setText("TextView");
-        }
+
+
+    public void addListenerOnSpinnerItemSelection() {
+        spinner1 = (Spinner) findViewById(R.id.spinner1);
+        spinner1.setOnItemSelectedListener(new CustomOnItemSelectedListener());
+        Log.v("tag",spinner1.getSelectedItem().toString());
+
+    }
+
+    // get the selected dropdown list value
+    public void addListenerOnButton() {
+
+        spinner1 = (Spinner) findViewById(R.id.spinner1);
+
+
+
+
     }
 
     @Override

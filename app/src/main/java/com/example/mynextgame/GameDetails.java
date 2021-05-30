@@ -28,8 +28,7 @@ public class GameDetails extends AppCompatActivity {
         setContentView(R.layout.activity_game_details);
 
         //Obtain references to objects
-        objTextView2 = (TextView) findViewById(R.id.textView2);
-
+//        objTextView2 = (TextView) findViewById(R.id.textView2);
         //Get Bundle from the Intent
         Bundle extras = getIntent().getExtras();
 
@@ -42,7 +41,7 @@ public class GameDetails extends AppCompatActivity {
             Log.d("SayHelloNewScreen.java",idText.toString());
 
             //Update the UI
-            objTextView2.setText("You passed the tag: " + idText);
+//            objTextView2.setText("You passed the tag: " + idText);
             extractGame(idText);
 
 
@@ -64,7 +63,7 @@ public class GameDetails extends AppCompatActivity {
                 JSONObject devObject = jaDevs.getJSONObject(0);
                 pickedGame.setDeveloper(devObject.getString("name"));
                 pickedGame.setImage(response.getString("background_image"));
-                objTextView2.setText(pickedGame.getDeveloper());
+//                objTextView2.setText(pickedGame.getDeveloper());
 
             } catch (JSONException e) {
                 e.printStackTrace();

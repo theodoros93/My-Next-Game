@@ -34,9 +34,11 @@ public class ChooseGame extends AppCompatActivity {
     private static final String API_KEY = "b8d66c33ab0245c38f23f3ea321c1fb5";
     Adapter adapter;
 
+    // initializing bundle extras
     private String[] tagsArray = {};
     private String[] genresArray = {};
     private String titleString = "";
+    private String platformString = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,7 @@ public class ChooseGame extends AppCompatActivity {
             tagsArray = extras.getStringArray("savedTagsArray");
             genresArray = extras.getStringArray("savedGenresArray");
             titleString = extras.getString("savedTitleString");
+            platformString = extras.getString("savedPlatformString");
 
 
 
