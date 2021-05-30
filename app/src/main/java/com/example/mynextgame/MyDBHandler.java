@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.content.Context;
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.widget.Toast;
 
 public class MyDBHandler extends SQLiteOpenHelper {
     // Specifying DB statics
@@ -176,18 +177,27 @@ public class MyDBHandler extends SQLiteOpenHelper {
         }
         return cursor;
     }
-//
-//    //Μέθοδος για διαγραφή προϊόντος βάσει ονομασίας του
-//    public boolean deleteGame(String gamename) {
-//        boolean result = false;
-//        Game game = findGame(gamename);
-//        if (game != null){
-//            SQLiteDatabase db = this.getWritableDatabase();
-//            db.delete(TABLE_WISHLIST, COLUMN_ID + " = ?",
-//                    new String[] { String.valueOf(game.getID()) });
-//            result = true;
-//            db.close();
-//        }
-//        return result;
-//    }
+
+    // deleting game based on game Title
+    public void deleteFromWishlist(String gameName) {
+        Game game = findInWishlist(gameName);
+        if (game != null){
+            SQLiteDatabase db = this.getWritableDatabase();
+            db.delete(TABLE_WISHLIST, COLUMN_ID + " = ?",
+                    new String[] { String.valueOf(game.getID()) });
+
+            db.close();
+        }
+    }
+
+    // deleting game based on game Title
+    public void deleteFromLibrary(String gameName) {
+        Game game = findInLibrary(gameName);
+        if (game != null){
+            SQLiteDatabase db = this.getWritableDatabase();
+            db.delete(TABLE_LIBRARY, COLUMN_ID + " = ?",
+                    new String[] { String.valueOf(game.getID()) });
+            db.close();
+        }
+    }
 }

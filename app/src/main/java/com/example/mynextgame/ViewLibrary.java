@@ -1,6 +1,8 @@
 package com.example.mynextgame;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -56,8 +58,30 @@ public class ViewLibrary extends AppCompatActivity {
         // binding the database data to RecyclerView Items
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         adapter = new Adapter(getApplicationContext(), games);
+        // setting callback to recyclerview
+        new ItemTouchHelper((itemTouchHelperCallback)).attachToRecyclerView(recyclerView);
         recyclerView.setAdapter(adapter);
     }
+
+    // using SimpleCallBack swipe functionality (only for swipe right action on Recyclerview Item)
+    ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            Game game = new Game();
+            game = games.get(viewHolder.getAdapterPosition());
+            // referencing the adapter, because inside it is the viewholder, holding every game item
+            // removing the RecyclerView item
+            games.remove(viewHolder.getAdapterPosition());
+            // also deleting the game from DB
+            myDb.deleteFromLibrary(game.getName());
+            adapter.notifyDataSetChanged();
+        }
+    };
 
 
 }
