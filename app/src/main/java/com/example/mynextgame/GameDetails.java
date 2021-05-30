@@ -24,7 +24,7 @@ public class GameDetails extends AppCompatActivity {
 
     private static final String JSON_URL = "https://api.rawg.io/api/games/";
     private static final String API_KEY = "b8d66c33ab0245c38f23f3ea321c1fb5";
-    TextView objTextView2;
+
     TextView objChosenGameTitle;
     TextView objChosenGameDescription;
     TextView objChosenGameReleased;
@@ -60,27 +60,29 @@ public class GameDetails extends AppCompatActivity {
             //Retrieve data passed in the Intent
             CharSequence idText = extras.getCharSequence("savedID");
 
-            //For debugging: print in the Logact (Debug level)
-            Log.d("SayHelloNewScreen.java",idText.toString());
-
+            // needing the idText for another API GET, this time to request single node
             extractGame(idText);
 
 
         }
     }
 
+    // extracts single node Data (for single game)
      private void extractGame(CharSequence gameID) {
+        // volley used for async functionality
         RequestQueue queue = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, JSON_URL + gameID + "?key=" + API_KEY , null, response -> {
             try {
 
                 // setting values to game fields
+                pickedGame.setID(Integer.parseInt(gameID.toString()));
                 pickedGame.setName(response.getString("name"));
                 pickedGame.setDescription(response.getString("description"));
                 pickedGame.setReleased(response.getString("released"));
                 pickedGame.setWebsite(response.getString("website"));
                 pickedGame.setRating(Float.parseFloat(response.getString("rating")));
                 pickedGame.setPlaytime(Integer.parseInt(response.getString("playtime")));
+                // Developers is a JSONArray, acquiring the 1st entry (the main developer of the game)
                 JSONArray jaDevs = response.getJSONArray("developers");
                 JSONObject devObject = jaDevs.getJSONObject(0);
                 pickedGame.setDeveloper(devObject.getString("name"));
@@ -108,6 +110,8 @@ public class GameDetails extends AppCompatActivity {
 
     public void newGameToWishlist (View view) {
         MyDBHandler dbHandler = new MyDBHandler(this, null, null, 1);
+
+        String gameID = String.valueOf(pickedGame.getID());
         String gameName = objChosenGameTitle.getText().toString();
         String gameDescription = objChosenGameDescription.getText().toString();
         String gameReleased = objChosenGameReleased.getText().toString();
@@ -121,7 +125,7 @@ public class GameDetails extends AppCompatActivity {
         if (!gameName.equals("")){
             Game found = dbHandler.findInWishlist(gameName);
             if (found == null){
-                Game game = new Game(gameName, Float.parseFloat(gameRating), Integer.parseInt(gamePlaytime), gameReleased, gameImage, gameDescription, gameDeveloper, gameWebsite);
+                Game game = new Game(Integer.parseInt(gameID), gameName, Float.parseFloat(gameRating), Integer.parseInt(gamePlaytime), gameReleased, gameImage, gameDescription, gameDeveloper, gameWebsite);
                 dbHandler.addGameToWishlist(game);
             }
             else{

@@ -1,5 +1,8 @@
 package com.example.mynextgame;
-
+/**
+ * The game entity. Everything we'd like to know about a video game.
+ * */
+// game fields
 public class Game {
     private int _id;
     private String _name;
@@ -12,6 +15,7 @@ public class Game {
     private String _website;
 
 
+    // different constructors
     public Game() {
     }
 
@@ -40,6 +44,7 @@ public class Game {
 
     }
 
+    // setters and getters
     public int getID() {
         return this._id;
     }

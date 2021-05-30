@@ -1,16 +1,14 @@
 package com.example.mynextgame;
 
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.content.Context;
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.util.Log;
 
 public class MyDBHandler extends SQLiteOpenHelper {
-    //Σταθερές για τη ΒΔ (όνομα ΒΔ, έκδοση, πίνακες κλπ)
-    private static final int DATABASE_VERSION = 1;
+    // Specifying DB statics
+    private static final int DATABASE_VERSION = 2;
     private static final String DATABASE_NAME = "gameDB.db";
     public static final String TABLE_WISHLIST = "wishlist";
     public static final String TABLE_LIBRARY = "library";
@@ -32,7 +30,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
     
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // creating wishlist tabe
+        // creating wishlist table
         String CREATE_WISHLIST_TABLE = "CREATE TABLE " +
                 TABLE_WISHLIST + "(" +
                 COLUMN_ID + " INTEGER PRIMARY KEY," +
@@ -71,9 +69,10 @@ public class MyDBHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    //methods to add games to each DB
+    //method to add games to Wish TABLE
     public void addGameToWishlist(Game game) {
         ContentValues values = new ContentValues();
+        values.put(COLUMN_ID, game.getID());
         values.put(COLUMN_NAME, game.getName());
         values.put(COLUMN_RATING, game.getRating());
         values.put(COLUMN_PLAYTIME, game.getPlaytime());
@@ -87,8 +86,10 @@ public class MyDBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    //method to add games to Lib TABLE
     public void addGameToLibrary(Game game) {
         ContentValues values = new ContentValues();
+        values.put(COLUMN_ID, game.getID());
         values.put(COLUMN_NAME, game.getName());
         values.put(COLUMN_RATING, game.getRating());
         values.put(COLUMN_PLAYTIME, game.getPlaytime());
@@ -102,7 +103,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    //Μέθοδος για εύρεση προϊόντος βάσει ονομασίας του
+    // Method to find game from DB -> returns the object or null
     public Game findInWishlist(String gameName) {
         String query = "SELECT * FROM " + TABLE_WISHLIST + " WHERE " +
                 COLUMN_NAME + " = '" + gameName + "'";
@@ -128,7 +129,7 @@ public class MyDBHandler extends SQLiteOpenHelper {
         return game;
     }
 
-    //    //Μέθοδος για εύρεση προϊόντος βάσει ονομασίας του
+    // Method to find game from DB -> returns the object or null
     public Game findInLibrary(String gameName) {
         String query = "SELECT * FROM " + TABLE_LIBRARY + " WHERE " +
                 COLUMN_NAME + " = '" + gameName + "'";
@@ -152,6 +153,28 @@ public class MyDBHandler extends SQLiteOpenHelper {
         }
         db.close();
         return game;
+    }
+
+    Cursor readAllDataWishlist(){
+        String query = "SELECT * FROM " + TABLE_WISHLIST;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = null;
+        if (db !=null){
+            cursor= db.rawQuery(query, null);
+
+        }
+        return cursor;
+    }
+
+    Cursor readAllDataLibrary(){
+        String query = "SELECT * FROM " + TABLE_LIBRARY;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = null;
+        if (db !=null){
+            cursor= db.rawQuery(query, null);
+
+        }
+        return cursor;
     }
 //
 //    //Μέθοδος για διαγραφή προϊόντος βάσει ονομασίας του

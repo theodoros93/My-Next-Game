@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyNextGame">
-        <activity android:name=".GameDetails"></activity>
+        <activity android:name=".ViewLibrary"></activity>
+        <activity android:name=".ViewWishlist" />
+        <activity android:name=".GameDetails" />
         <activity android:name=".ChooseFilters" />
         <activity android:name=".ChooseGame" />
         <activity android:name=".MainActivity">

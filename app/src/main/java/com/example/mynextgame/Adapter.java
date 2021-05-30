@@ -1,5 +1,7 @@
 package com.example.mynextgame;
-
+/**
+ * Bridge between UI components and data.
+*/
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -17,10 +19,10 @@ import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
-
     LayoutInflater inflater;
     List<Game> games;
 
+    // constructor
     public Adapter(Context ctx, List<Game> games) {
         this.inflater = LayoutInflater.from(ctx);
         this.games = games;
@@ -65,7 +67,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
             gameImage = itemView.findViewById(R.id.chosenGameImage);
             gameID = itemView.findViewById(R.id.gameIdHelper);
 
-
+            // Listener for every game. Sends the ID to GameDetails activity, for another API call
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

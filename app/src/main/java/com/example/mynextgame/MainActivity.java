@@ -14,12 +14,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    public void viewWishlist(View view){
+        //Create the Intent to start the ViewList Activity
+        Intent i = new Intent (this , ViewWishlist.class);
+
+        //Ask Android to start the new Activity
+        startActivity(i);
+    }
+
     public void chooseFilters(View view){
         //Create the Intent to start the ChooseFilters Activity
         Intent i = new Intent (this , ChooseFilters.class);
-//        //Pass data to the ChooseFilters Activity through the Intent
-//        CharSequence userText = objEditTextName.getText
-//        i.putExtra savedUserText "", userText
 
         //Ask Android to start the new Activity
         startActivity(i);

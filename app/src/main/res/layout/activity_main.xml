@@ -52,6 +52,7 @@
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/purple_700"
         android:fontFamily="@font/black_ops_one"
+        android:onClick="viewWishlist"
         android:text="wishlist"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"

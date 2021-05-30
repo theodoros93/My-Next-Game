@@ -11,7 +11,6 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ChooseFilters extends AppCompatActivity {
     EditText objEditTextTags;
@@ -19,17 +18,16 @@ public class ChooseFilters extends AppCompatActivity {
     EditText objEditTextTitle;
     Spinner spinner1;
 
-    // these are need to pass extras
+    // these are needed to pass extras to next activity
     private ArrayList<String> tagsArray = new ArrayList<>();
     private ArrayList<String> genresArray = new ArrayList<>();
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_filters);
 
+        // adding the listheners
         addListenerOnButton();
         addListenerOnSpinnerItemSelection();
 
@@ -37,10 +35,9 @@ public class ChooseFilters extends AppCompatActivity {
         objEditTextTags = findViewById(R.id.editTextTags);
         objEditTextTitle = findViewById(R.id.editTextTitle);
         objEditTextGenres = findViewById(R.id.editTextGenres);
-//        objTextViewName = findViewById(R.id.textViewNameNewScreen);
 
         if (savedInstanceState != null){
-            //Retrieve data from the Bundle (other methods include getInt(), getBoolean() etc)
+            //Retrieve data from the Bundle
             CharSequence tagsText = savedInstanceState.getCharSequence("savedTagsText");
             CharSequence genresText = savedInstanceState.getCharSequence("savedGenresText");
             CharSequence TitleText = savedInstanceState.getCharSequence("savedTitleText");
@@ -55,31 +52,27 @@ public class ChooseFilters extends AppCompatActivity {
             objEditTextTags.setText("");
             objEditTextTitle.setText("");
             objEditTextGenres.setText("");
-//            objTextViewName.setText("TextView");
         }
     }
 
 
-
+    // initializes spinner object
     public void addListenerOnSpinnerItemSelection() {
         spinner1 = (Spinner) findViewById(R.id.spinnerPlatform);
         spinner1.setOnItemSelectedListener(new CustomOnItemSelectedListener());
-        Log.v("tagSpin",spinner1.getSelectedItem().toString());
 
     }
 
     // get the selected dropdown list value
     public void addListenerOnButton() {
-
         spinner1 = (Spinner) findViewById(R.id.spinnerPlatform);
-
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        //Save data to the Bundle (other methods include putInt(), putBoolean() etc)
+        //Save data to the Bundle
         CharSequence tagsText = objEditTextTags.getText();
         outState.putCharSequence("savedTagsText", tagsText);
         CharSequence genresText = objEditTextGenres.getText();
@@ -90,26 +83,23 @@ public class ChooseFilters extends AppCompatActivity {
     }
 
     public void chooseGame(View view){
-        //Create the Intent to start the ChooseFilters Activity
+        //Create the Intent to start the ChooseGame Activity
         Intent i = new Intent (this , ChooseGame.class);
         //Pass data to the ChooseFilters Activity through the Intent
         String titleString = objEditTextTitle.getText().toString();
 
         i.putExtra("savedTagsArray", tagsArray);
         i.putExtra("savedGenresArray", genresArray);
-
-//        Log.v("spinnin",spinner1.getSelectedItem().toString());
-        String spinnerValue = mapSpinnerItems(spinner1.getSelectedItem().toString());
-        // only put platform as extra if user chose one
+        // getting spinner value
         i.putExtra("savedPlatforms", mapSpinnerItems(spinner1.getSelectedItem().toString()));
         i.putExtra("savedTitleString", titleString);
         //Ask Android to start the new Activity
         startActivity(i);
-        // finishing activity to erase all memory of current search
+        // finishing activity to erase all memory of current search -> This means a back press from next activity will return to main activity
         finish();
     }
 
-    // mapping for every string value, to platform ids that the API accepts
+    // mapping for every string value -> to platform ids that the API accepts
     public String mapSpinnerItems(String selectedItem){
         switch (selectedItem){
             case "PC":
@@ -127,11 +117,10 @@ public class ChooseFilters extends AppCompatActivity {
             case "iOS":
                 return "3";
         }
-
         return "";
     }
 
-    // when adding a tag
+    // when adding a tag (user presses +)
     public void addTag(View view)
     {
         String newTag = objEditTextTags.getText().toString();
@@ -141,7 +130,7 @@ public class ChooseFilters extends AppCompatActivity {
 
     }
 
-    // when adding a genre
+    // when adding a genre (user presses +)
     public void addGenre(View view)
     {
         String newGenre = objEditTextGenres.getText().toString();

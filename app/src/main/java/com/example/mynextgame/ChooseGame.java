@@ -4,17 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -26,7 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChooseGame extends AppCompatActivity {
-//    TextView objTextViewTags;
 
     RecyclerView recyclerView;
     List<Game> games;
@@ -58,15 +51,14 @@ public class ChooseGame extends AppCompatActivity {
             Log.v("tag",platformString);
 
         }
-
         recyclerView = findViewById(R.id.gamesList);
         games = new ArrayList<>();
+        // calling the function that makes the GET request to rawg.io API
         extractGames(titleString);
     }
 
 
     private void extractGames(String titleString) {
-
 
         // converting arrays to string
         // also adding the needed elements for a JSON GET, according to API specifications
@@ -91,7 +83,9 @@ public class ChooseGame extends AppCompatActivity {
             url = JSON_URL + "?key=" + API_KEY + tagsString + genresString + "&search=" + titleString;
         }
 
+        // using volley to asyncronously fill the recycler view
         RequestQueue queue = Volley.newRequestQueue(this);
+        // making the request
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, response -> {
             // the games are under response.results (the Jsonarray list)
             try {
@@ -106,6 +100,7 @@ public class ChooseGame extends AppCompatActivity {
                         game.setReleased(gameObject.getString("released"));
                         game.setImage(gameObject.getString("background_image"));
                         game.setID(Integer.parseInt(gameObject.getString("id")));
+                        // adding every game to games ArrayList
                         games.add(game);
 
 
@@ -117,10 +112,9 @@ public class ChooseGame extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-//            JSONArray ja = jsonObj.getJSONArray("Ingredients");
-//            int len = ja.length();
 
             recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+            // binding the games returned by rawg io to RecyclerView items
             adapter = new Adapter(getApplicationContext(), games);
             recyclerView.setAdapter(adapter);
 
@@ -128,15 +122,4 @@ public class ChooseGame extends AppCompatActivity {
 
         queue.add(jsonObjectRequest);
     }
-
-
-//    public void chooseGame(View view){
-//        //Create the Intent to start the ChooseFilters Activity
-//        Intent i = new Intent (this , ChooseFilters.class);
-//        //Pass data to the ChooseFilters Activity through the Intent
-//        CharSequence userText = objEditTextName.getText
-//        i.putExtra savedUserText "", userText
-//
-//        //Ask Android to start the new Activity
-//        startActivity(i);
 }
