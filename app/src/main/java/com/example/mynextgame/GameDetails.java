@@ -127,6 +127,7 @@ public class GameDetails extends AppCompatActivity {
             if (found == null){
                 Game game = new Game(Integer.parseInt(gameID), gameName, Float.parseFloat(gameRating), Integer.parseInt(gamePlaytime), gameReleased, gameImage, gameDescription, gameDeveloper, gameWebsite);
                 dbHandler.addGameToWishlist(game);
+                Toast.makeText(this, "Game added to your Wishlist.", Toast.LENGTH_SHORT).show();
             }
             else{
                 Toast.makeText(this, "Game already in your Wishlist!", Toast.LENGTH_SHORT).show();
@@ -136,6 +137,7 @@ public class GameDetails extends AppCompatActivity {
 
     public void newGameToLibrary (View view) {
         MyDBHandler dbHandler = new MyDBHandler(this, null, null, 1);
+        String gameID = String.valueOf(pickedGame.getID());
         String gameName = objChosenGameTitle.getText().toString();
         String gameDescription = objChosenGameDescription.getText().toString();
         String gameReleased = objChosenGameReleased.getText().toString();
@@ -149,8 +151,9 @@ public class GameDetails extends AppCompatActivity {
         if (!gameName.equals("")){
             Game found = dbHandler.findInLibrary(gameName);
             if (found == null){
-                Game game = new Game(gameName, Float.parseFloat(gameRating), Integer.parseInt(gamePlaytime), gameReleased, gameImage, gameDescription, gameDeveloper, gameWebsite);
+                Game game = new Game(Integer.parseInt(gameID), gameName, Float.parseFloat(gameRating), Integer.parseInt(gamePlaytime), gameReleased, gameImage, gameDescription, gameDeveloper, gameWebsite);
                 dbHandler.addGameToLibrary(game);
+                Toast.makeText(this, "Game added to your Library.", Toast.LENGTH_SHORT).show();
             }
             else{
                 Toast.makeText(this, "Game already in your Library!", Toast.LENGTH_SHORT).show();

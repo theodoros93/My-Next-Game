@@ -8,7 +8,7 @@ import android.database.Cursor;
 
 public class MyDBHandler extends SQLiteOpenHelper {
     // Specifying DB statics
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 4;
     private static final String DATABASE_NAME = "gameDB.db";
     public static final String TABLE_WISHLIST = "wishlist";
     public static final String TABLE_LIBRARY = "library";

@@ -22,6 +22,14 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void viewLibrary(View view){
+        //Create the Intent to start the ViewList Activity
+        Intent i = new Intent (this , ViewLibrary.class);
+
+        //Ask Android to start the new Activity
+        startActivity(i);
+    }
+
     public void chooseFilters(View view){
         //Create the Intent to start the ChooseFilters Activity
         Intent i = new Intent (this , ChooseFilters.class);
