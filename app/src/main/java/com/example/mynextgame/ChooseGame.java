@@ -35,8 +35,8 @@ public class ChooseGame extends AppCompatActivity {
     Adapter adapter;
 
     // initializing bundle extras
-    private String[] tagsArray = {};
-    private String[] genresArray = {};
+    private ArrayList<String> genresArray = new ArrayList<>();
+    private ArrayList<String> tagsArray = new ArrayList<>();
     private String titleString = "";
     private String platformString = "";
 
@@ -51,20 +51,16 @@ public class ChooseGame extends AppCompatActivity {
         //If there are data passed in the Intent
         if (extras != null) {
             //Retrieve data passed in the Intent
-            tagsArray = extras.getStringArray("savedTagsArray");
-            genresArray = extras.getStringArray("savedGenresArray");
+            tagsArray = extras.getStringArrayList("savedTagsArray");
+            genresArray = extras.getStringArrayList("savedGenresArray");
             titleString = extras.getString("savedTitleString");
             platformString = extras.getString("savedPlatformString");
-
-
 
         }
 
         recyclerView = findViewById(R.id.gamesList);
         games = new ArrayList<>();
         extractGames(tagsArray, genresArray, titleString);
-
-
 
 
 
@@ -75,19 +71,21 @@ public class ChooseGame extends AppCompatActivity {
     }
 
 
-    private void extractGames(String[] tagsArray, String[] genresArray, String titleString) {
+    private void extractGames(ArrayList<String> tagsArray, ArrayList<String> genresArray, String titleString) {
+
 
         // converting arrays to string
         // also adding the needed elements for a JSON GET, according to API specifications
-        for (int i = 0; i<tagsArray.length;i++){
-            tagsArray[i] = "&tags="+tagsArray[i];
+        for (int i = 0; i<tagsArray.size();i++){
+            tagsArray.set(i,"&tags="+tagsArray.get(i));
         }
         String tagsString =String.join("", tagsArray);
+        Log.v("tagsString",tagsString);
 
-        for (int i = 0; i<genresArray.length;i++){
-            genresArray[i] = "&tags="+genresArray[i];
+        for (int i = 0; i<genresArray.size();i++){
+            genresArray.set(i,"&genres="+genresArray.get(i));
         }
-        String genresString =String.join("", tagsArray);
+        String genresString =String.join("", genresArray);
 
         RequestQueue queue = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, JSON_URL + "?key=" + API_KEY + tagsString + genresString + "&search=" + titleString, null, response -> {
