@@ -14,7 +14,6 @@ public class Game {
     private String _developer;
     private String _website;
 
-
     // different constructors
     public Game() {
     }

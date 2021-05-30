@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:background="#3F51B5"
             android:fontFamily="@font/black_ops_one"
-            android:text="My Wishlist "
+            android:text="@string/my_wishlist"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
             android:textSize="30sp" />

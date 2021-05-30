@@ -21,7 +21,7 @@
             android:layout_marginHorizontal="8dp"
             android:layout_weight="1"
             android:onClick="newGameToWishlist"
-            android:text="Add to Wishlist" />
+            android:text="@string/add_to_wishlist" />
 
         <Button
             android:id="@+id/button2"
@@ -30,7 +30,7 @@
             android:layout_marginHorizontal="8dp"
             android:layout_weight="1"
             android:onClick="newGameToLibrary"
-            android:text="Add to Library" />
+            android:text="@string/add_to_library" />
     </LinearLayout>
     <ScrollView
         android:layout_width="match_parent"
@@ -60,8 +60,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/black_ops_one"
-                    android:text="Title: "
-                    android:textSize="14dp" />
+                    android:text="@string/title"
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/chosenGameTitle"
@@ -69,8 +69,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:fontFamily="sans-serif-black"
-                    android:text="test"
-                    android:textSize="14dp" />
+                    android:text=""
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -83,7 +83,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/black_ops_one"
-                    android:text="Released: "
+                    android:text="@string/released"
                     android:textSize="14dp" />
 
                 <TextView
@@ -92,7 +92,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:fontFamily="@font/black_ops_one"
-                    android:text="test"
+                    android:text=""
                     android:textSize="14dp" />
             </LinearLayout>
 
@@ -106,7 +106,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/black_ops_one"
-                    android:text="Rating: "
+                    android:text="@string/rating"
                     android:textSize="14dp" />
 
                 <TextView
@@ -115,7 +115,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:fontFamily="@font/black_ops_one"
-                    android:text="test"
+                    android:text=""
                     android:textSize="14dp" />
             </LinearLayout>
 
@@ -129,7 +129,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/black_ops_one"
-                    android:text="Playtime: "
+                    android:text="@string/playtime"
                     android:textSize="14dp" />
 
                 <TextView
@@ -138,7 +138,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:fontFamily="@font/black_ops_one"
-                    android:text="test"
+                    android:text=""
                     android:textSize="14dp" />
             </LinearLayout>
 
@@ -152,7 +152,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/black_ops_one"
-                    android:text="Website: "
+                    android:text="@string/website"
                     android:textSize="14dp" />
 
                 <TextView
@@ -161,7 +161,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:fontFamily="@font/black_ops_one"
-                    android:text="test"
+                    android:text=""
                     android:textSize="14dp" />
             </LinearLayout>
 
@@ -175,7 +175,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/black_ops_one"
-                    android:text="Developer: "
+                    android:text="@string/developer"
                     android:textSize="14dp" />
 
                 <TextView
@@ -184,7 +184,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:fontFamily="@font/black_ops_one"
-                    android:text="test"
+                    android:text=""
                     android:textSize="14dp" />
             </LinearLayout>
 
@@ -198,7 +198,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/black_ops_one"
-                    android:text="Description: "
+                    android:text="@string/description"
                     android:textSize="14dp" />
 
                 <TextView
@@ -207,7 +207,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:fontFamily="@font/black_ops_one"
-                    android:text="test"
+                    android:text=""
                     android:textSize="14dp" />
             </LinearLayout>
 

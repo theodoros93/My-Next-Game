@@ -1,6 +1,34 @@
 <resources>
     <string name="app_name">MyNextGame</string>
     <string name="prompt">Choose a platform</string>
+    <string name="Optional">Optional</string>
+    <string name="Title">Title :</string>
+    <string name="Genres">Genres :</string>
+    <string name="Tags">Tags :</string>
+    <string name="Platform">Platform :</string>
+    <string name="examp_genres">Action, Adventure</string>
+    <string name="examp_tags">RPG, Co-op</string>
+    <string name="game_search">Search Your Game</string>
+    <string name="preferences">Please insert your preferences</string>
+    <string name="add_to_wishlist">Add to Wishlist</string>
+    <string name="add_to_library">Add to Library</string>
+    <string name="title">Title:</string>
+    <string name="released">Released:</string>
+    <string name="rating">Rating:</string>
+    <string name="playtime">Playtime:</string>
+    <string name="website">Website:</string>
+    <string name="developer">Developer:</string>
+    <string name="description">Description:</string>
+    <string name="discover">Discover!</string>
+    <string name="library">Library</string>
+    <string name="wishlist">Wishlist</string>
+    <string name="my_next_game">My Next Game</string>
+    <string name="my_library">My Library</string>
+    <string name="my_wishlist">My Wishlist</string>
+    <string name="game_title">Game Title</string>
+    <string name="release_date">Release Date</string>
+    <string name="game_rating">Game Rating</string>
+    <string name="_1">1</string>
     <string-array name="Platforms">
         <item>---Choose Platform---</item>
         <item>PC</item>
