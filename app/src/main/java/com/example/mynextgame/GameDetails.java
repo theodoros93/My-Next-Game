@@ -3,13 +3,16 @@ package com.example.mynextgame;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,6 +23,15 @@ public class GameDetails extends AppCompatActivity {
     private static final String JSON_URL = "https://api.rawg.io/api/games/";
     private static final String API_KEY = "b8d66c33ab0245c38f23f3ea321c1fb5";
     TextView objTextView2;
+    TextView objChosenGameTitle;
+    TextView objChosenGameDescription;
+    TextView objChosenGameReleased;
+    TextView objChosenGameRating;
+    TextView objChosenGamePlaytime;
+    TextView objChosenGameWebsite;
+    TextView objChosenGameDeveloper;
+    ImageView objChosenGameImage;
+
     Game pickedGame = new Game();
 
     @Override
@@ -28,7 +40,16 @@ public class GameDetails extends AppCompatActivity {
         setContentView(R.layout.activity_game_details);
 
         //Obtain references to objects
-//        objTextView2 = (TextView) findViewById(R.id.textView2);
+        objChosenGameTitle = (TextView) findViewById(R.id.chosenGameTitle);
+        objChosenGameDescription = (TextView) findViewById(R.id.chosenGameDescription);
+        objChosenGameReleased = (TextView) findViewById(R.id.chosenGameReleased);
+        objChosenGameRating = (TextView) findViewById(R.id.chosenGameRating);
+        objChosenGamePlaytime = (TextView) findViewById(R.id.chosenGamePlaytime);
+        objChosenGameWebsite = (TextView) findViewById(R.id.chosenGameWebsite);
+        objChosenGameDeveloper = (TextView) findViewById(R.id.chosenGameDeveloper);
+        objChosenGameImage = findViewById(R.id.chosenGameImage);
+
+
         //Get Bundle from the Intent
         Bundle extras = getIntent().getExtras();
 
@@ -40,8 +61,6 @@ public class GameDetails extends AppCompatActivity {
             //For debugging: print in the Logact (Debug level)
             Log.d("SayHelloNewScreen.java",idText.toString());
 
-            //Update the UI
-//            objTextView2.setText("You passed the tag: " + idText);
             extractGame(idText);
 
 
@@ -53,6 +72,7 @@ public class GameDetails extends AppCompatActivity {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, JSON_URL + gameID + "?key=" + API_KEY , null, response -> {
             try {
 
+                // setting values to game fields
                 pickedGame.setName(response.getString("name"));
                 pickedGame.setDescription(response.getString("description"));
                 pickedGame.setReleased(response.getString("released"));
@@ -63,7 +83,17 @@ public class GameDetails extends AppCompatActivity {
                 JSONObject devObject = jaDevs.getJSONObject(0);
                 pickedGame.setDeveloper(devObject.getString("name"));
                 pickedGame.setImage(response.getString("background_image"));
-//                objTextView2.setText(pickedGame.getDeveloper());
+
+
+                //Update the UI
+                objChosenGameTitle.setText(pickedGame.getName());
+                objChosenGameDescription.setText(Html.fromHtml(pickedGame.getDescription()));
+                objChosenGameReleased.setText(pickedGame.getReleased());
+                objChosenGameWebsite.setText(pickedGame.getWebsite());
+                objChosenGameRating.setText(String.valueOf(pickedGame.getRating()));
+                objChosenGamePlaytime.setText(String.valueOf(pickedGame.getPlaytime()));
+                objChosenGameDeveloper.setText(pickedGame.getDeveloper());
+                Picasso.get().load(pickedGame.getImage()).into(objChosenGameImage);
 
             } catch (JSONException e) {
                 e.printStackTrace();

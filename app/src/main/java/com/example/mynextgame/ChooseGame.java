@@ -38,7 +38,7 @@ public class ChooseGame extends AppCompatActivity {
     private ArrayList<String> genresArray = new ArrayList<>();
     private ArrayList<String> tagsArray = new ArrayList<>();
     private String titleString = "";
-    private String platformString = "";
+    private String platformString="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,24 +54,18 @@ public class ChooseGame extends AppCompatActivity {
             tagsArray = extras.getStringArrayList("savedTagsArray");
             genresArray = extras.getStringArrayList("savedGenresArray");
             titleString = extras.getString("savedTitleString");
-            platformString = extras.getString("savedPlatformString");
+            platformString = extras.getString("savedPlatforms");
+            Log.v("tag",platformString);
 
         }
 
         recyclerView = findViewById(R.id.gamesList);
         games = new ArrayList<>();
-        extractGames(tagsArray, genresArray, titleString);
-
-
-
-//        //Obtain references to objects
-//        objTextViewTags = (TextView) findViewById(R.id.textViewTags);
-//
-
+        extractGames(titleString);
     }
 
 
-    private void extractGames(ArrayList<String> tagsArray, ArrayList<String> genresArray, String titleString) {
+    private void extractGames(String titleString) {
 
 
         // converting arrays to string
@@ -83,12 +77,22 @@ public class ChooseGame extends AppCompatActivity {
         Log.v("tagsString",tagsString);
 
         for (int i = 0; i<genresArray.size();i++){
-            genresArray.set(i,"&genres="+genresArray.get(i));
+            genresArray.set(i,"&genre="+genresArray.get(i));
         }
         String genresString =String.join("", genresArray);
+        Log.v("genreString",genresString);
+
+        // empty platform string is not accepted by the rawg.io API
+        String url;
+        if (!platformString.equals("")){
+            url = JSON_URL + "?key=" + API_KEY + tagsString + genresString + "&search=" + titleString + "&platforms=" + platformString;
+        }
+        else{
+            url = JSON_URL + "?key=" + API_KEY + tagsString + genresString + "&search=" + titleString;
+        }
 
         RequestQueue queue = Volley.newRequestQueue(this);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, JSON_URL + "?key=" + API_KEY + tagsString + genresString + "&search=" + titleString, null, response -> {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, response -> {
             // the games are under response.results (the Jsonarray list)
             try {
                 JSONArray resultArray = response.getJSONArray("results");
@@ -102,7 +106,6 @@ public class ChooseGame extends AppCompatActivity {
                         game.setReleased(gameObject.getString("released"));
                         game.setImage(gameObject.getString("background_image"));
                         game.setID(Integer.parseInt(gameObject.getString("id")));
-                        Log.v("tagID",gameObject.getString("id"));
                         games.add(game);
 
 

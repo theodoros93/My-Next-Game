@@ -23,7 +23,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/gameImage"
+                android:id="@+id/chosenGameImage"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -34,7 +34,7 @@
                 app:srcCompat="@drawable/ic_launcher_background" />
 
             <TextView
-                android:id="@+id/gameTitle"
+                android:id="@+id/chosenGameTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -45,7 +45,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/gameImage"
+                app:layout_constraintStart_toEndOf="@+id/chosenGameImage"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
 
@@ -57,8 +57,8 @@
                 android:text="Release Date"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/gameImage"
-                app:layout_constraintTop_toBottomOf="@+id/gameTitle" />
+                app:layout_constraintStart_toEndOf="@+id/chosenGameImage"
+                app:layout_constraintTop_toBottomOf="@+id/chosenGameTitle" />
 
             <TextView
                 android:id="@+id/gameRating"
@@ -68,7 +68,7 @@
                 android:text="Game Rating"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/gameImage"
+                app:layout_constraintStart_toEndOf="@+id/chosenGameImage"
                 app:layout_constraintTop_toBottomOf="@+id/gameReleased" />
 
             <TextView

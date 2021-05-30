@@ -59,10 +59,10 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            gameTitle = itemView.findViewById(R.id.gameTitle);
+            gameTitle = itemView.findViewById(R.id.chosenGameTitle);
             gameRating = itemView.findViewById(R.id.gameRating);
             gameReleased = itemView.findViewById(R.id.gameReleased);
-            gameImage = itemView.findViewById(R.id.gameImage);
+            gameImage = itemView.findViewById(R.id.chosenGameImage);
             gameID = itemView.findViewById(R.id.gameIdHelper);
 
 

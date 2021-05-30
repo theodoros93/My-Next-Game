@@ -20,8 +20,8 @@ public class ChooseFilters extends AppCompatActivity {
     Spinner spinner1;
 
     // these are need to pass extras
-    ArrayList<String> tagsArray = new ArrayList<>();
-    ArrayList<String> genresArray = new ArrayList<>();
+    private ArrayList<String> tagsArray = new ArrayList<>();
+    private ArrayList<String> genresArray = new ArrayList<>();
 
 
 
@@ -64,7 +64,7 @@ public class ChooseFilters extends AppCompatActivity {
     public void addListenerOnSpinnerItemSelection() {
         spinner1 = (Spinner) findViewById(R.id.spinnerPlatform);
         spinner1.setOnItemSelectedListener(new CustomOnItemSelectedListener());
-        Log.v("tag",spinner1.getSelectedItem().toString());
+        Log.v("tagSpin",spinner1.getSelectedItem().toString());
 
     }
 
@@ -97,10 +97,38 @@ public class ChooseFilters extends AppCompatActivity {
 
         i.putExtra("savedTagsArray", tagsArray);
         i.putExtra("savedGenresArray", genresArray);
+
+//        Log.v("spinnin",spinner1.getSelectedItem().toString());
+        String spinnerValue = mapSpinnerItems(spinner1.getSelectedItem().toString());
+        // only put platform as extra if user chose one
+        i.putExtra("savedPlatforms", mapSpinnerItems(spinner1.getSelectedItem().toString()));
         i.putExtra("savedTitleString", titleString);
-        i.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         //Ask Android to start the new Activity
         startActivity(i);
+        // finishing activity to erase all memory of current search
+        finish();
+    }
+
+    // mapping for every string value, to platform ids that the API accepts
+    public String mapSpinnerItems(String selectedItem){
+        switch (selectedItem){
+            case "PC":
+                return "4";
+            case "Playstation 4":
+                return "18";
+            case "Playstation 5":
+                return "187";
+            case "Xbox One":
+                return "1";
+            case "Xbox Series S/X":
+                return "186";
+            case "Android":
+                return "21";
+            case "iOS":
+                return "3";
+        }
+
+        return "";
     }
 
     // when adding a tag

@@ -3,22 +3,48 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@drawable/grad_backg"
     tools:context=".GameDetails">
 
     <LinearLayout
+        android:layout_margin="10dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_weight="1"
+            android:text="Add to Wishlist" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Add to Library"
+            android:layout_marginHorizontal="8dp"/>
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
 
         <ImageView
-            android:padding="10dp"
-            android:id="@+id/gameImage"
+            android:id="@+id/chosenGameImage"
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:padding="10dp"
             tools:src="@mipmap/ic_launcher" />
 
         <LinearLayout
@@ -31,12 +57,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/black_ops_one"
-                android:textSize="14dp"
-                android:text="Title"/>
+                android:text="Title: "
+                android:textSize="14dp" />
 
             <TextView
                 android:layout_marginLeft="5dp"
-                android:id="@+id/gameTitle"
+                android:id="@+id/chosenGameTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-black"
@@ -54,12 +80,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/black_ops_one"
-                android:textSize="14dp"
-                android:text="Description"/>
+                android:text="Released: "
+                android:textSize="14dp" />
 
             <TextView
                 android:layout_marginLeft="5dp"
-                android:id="@+id/description"
+                android:id="@+id/chosenGameReleased"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/black_ops_one"
@@ -77,12 +103,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/black_ops_one"
-                android:textSize="14dp"
-                android:text="Released"/>
+                android:text="Rating: "
+                android:textSize="14dp" />
 
             <TextView
                 android:layout_marginLeft="5dp"
-                android:id="@+id/released"
+                android:id="@+id/chosenGameRating"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/black_ops_one"
@@ -100,12 +126,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/black_ops_one"
-                android:textSize="14dp"
-                android:text="Rating"/>
+                android:text="Playtime: "
+                android:textSize="14dp" />
 
             <TextView
                 android:layout_marginLeft="5dp"
-                android:id="@+id/rating"
+                android:id="@+id/chosenGamePlaytime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/black_ops_one"
@@ -123,12 +149,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/black_ops_one"
-                android:textSize="14dp"
-                android:text="Playtime"/>
+                android:text="Website: "
+                android:textSize="14dp" />
 
             <TextView
                 android:layout_marginLeft="5dp"
-                android:id="@+id/playtime"
+                android:id="@+id/chosenGameWebsite"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/black_ops_one"
@@ -146,17 +172,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/black_ops_one"
-                android:textSize="14dp"
-                android:text="Website"/>
+                android:text="Developer: "
+                android:textSize="14dp" />
 
             <TextView
-                android:layout_marginLeft="5dp"
-                android:id="@+id/website"
+                android:id="@+id/chosenGameDeveloper"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
                 android:fontFamily="@font/black_ops_one"
-                android:textSize="14dp"
-                android:text="test"/>
+                android:text="test"
+                android:textSize="14dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -169,20 +195,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/black_ops_one"
-                android:textSize="14dp"
-                android:text="Developer"/>
+                android:text="Description: "
+                android:textSize="14dp" />
 
             <TextView
                 android:layout_marginLeft="5dp"
-                android:id="@+id/developer"
+                android:id="@+id/chosenGameDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/black_ops_one"
                 android:textSize="14dp"
                 android:text="test"/>
         </LinearLayout>
-
 
     </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>
