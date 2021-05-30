@@ -5,8 +5,6 @@ public class Game {
     private String _name;
     private float _rating;
     private  int _playtime;
-    private String _genre;
-    private String _platforms;
     private String _released;
     private String _image;
     private String _description;
@@ -17,13 +15,23 @@ public class Game {
     public Game() {
     }
 
-    public Game(int id, String name, float rating, int playtime, String genre, String platforms, String released, String image, String description, String developer, String website) {
+    public Game( String name, float rating, int playtime, String released, String image, String description, String developer, String website) {
+        this._name = name;
+        this._rating = rating;
+        this._playtime = playtime;
+        this._released = released;
+        this._image = image;
+        this._description = description;
+        this._developer = developer;
+        this._website = website;
+
+    }
+
+    public Game(int id, String name, float rating, int playtime, String released, String image, String description, String developer, String website) {
         this._id = id;
         this._name = name;
         this._rating = rating;
         this._playtime = playtime;
-        this._genre = genre;
-        this._platforms = platforms;
         this._released = released;
         this._image = image;
         this._description = description;
@@ -64,21 +72,6 @@ public class Game {
         return this._playtime;
     }
 
-    public void setGenre(String genre) {
-        this._genre = genre;
-    }
-
-    public String getGenre() {
-        return this._genre;
-    }
-
-    public void setTags(String platforms) {
-        this._platforms = platforms;
-    }
-
-    public String getTags() {
-        return this._platforms;
-    }
 
     public void setReleased(String released) {
         this._released = released;

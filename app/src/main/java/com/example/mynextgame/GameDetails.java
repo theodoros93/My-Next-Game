@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -102,6 +104,54 @@ public class GameDetails extends AppCompatActivity {
         }, error -> Log.d("APItag", "onErrorResponse: "+ error.getMessage()));
 
          queue.add(jsonObjectRequest);
+    }
+
+    public void newGameToWishlist (View view) {
+        MyDBHandler dbHandler = new MyDBHandler(this, null, null, 1);
+        String gameName = objChosenGameTitle.getText().toString();
+        String gameDescription = objChosenGameDescription.getText().toString();
+        String gameReleased = objChosenGameReleased.getText().toString();
+        String gameRating = objChosenGameRating.getText().toString();
+        String gamePlaytime = objChosenGamePlaytime.getText().toString();
+        String gameWebsite = objChosenGameWebsite.getText().toString();
+        String gameDeveloper = objChosenGameDeveloper.getText().toString();
+        String gameImage = pickedGame.getImage();
+
+
+        if (!gameName.equals("")){
+            Game found = dbHandler.findInWishlist(gameName);
+            if (found == null){
+                Game game = new Game(gameName, Float.parseFloat(gameRating), Integer.parseInt(gamePlaytime), gameReleased, gameImage, gameDescription, gameDeveloper, gameWebsite);
+                dbHandler.addGameToWishlist(game);
+            }
+            else{
+                Toast.makeText(this, "Game already in your Wishlist!", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    public void newGameToLibrary (View view) {
+        MyDBHandler dbHandler = new MyDBHandler(this, null, null, 1);
+        String gameName = objChosenGameTitle.getText().toString();
+        String gameDescription = objChosenGameDescription.getText().toString();
+        String gameReleased = objChosenGameReleased.getText().toString();
+        String gameRating = objChosenGameRating.getText().toString();
+        String gamePlaytime = objChosenGamePlaytime.getText().toString();
+        String gameWebsite = objChosenGameWebsite.getText().toString();
+        String gameDeveloper = objChosenGameDeveloper.getText().toString();
+        String gameImage = pickedGame.getImage();
+
+
+        if (!gameName.equals("")){
+            Game found = dbHandler.findInLibrary(gameName);
+            if (found == null){
+                Game game = new Game(gameName, Float.parseFloat(gameRating), Integer.parseInt(gamePlaytime), gameReleased, gameImage, gameDescription, gameDeveloper, gameWebsite);
+                dbHandler.addGameToLibrary(game);
+            }
+            else{
+                Toast.makeText(this, "Game already in your Library!", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
 }

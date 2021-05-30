@@ -20,15 +20,17 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="8dp"
             android:layout_weight="1"
+            android:onClick="newGameToWishlist"
             android:text="Add to Wishlist" />
 
         <Button
             android:id="@+id/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
             android:layout_weight="1"
-            android:text="Add to Library"
-            android:layout_marginHorizontal="8dp"/>
+            android:onClick="newGameToLibrary"
+            android:text="Add to Library" />
     </LinearLayout>
     <ScrollView
         android:layout_width="match_parent"
