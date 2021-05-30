@@ -106,8 +106,6 @@ public class ChooseFilters extends AppCompatActivity {
                 return "4";
             case "Playstation 4":
                 return "18";
-            case "Playstation 5":
-                return "187";
             case "Xbox One":
                 return "1";
             case "Xbox Series S/X":
