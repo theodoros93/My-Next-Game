@@ -15,3 +15,6 @@ In the library he can store the games he has in his possession and in the Wishli
 With the discover option the user is transferred to another screen where he is asked to enter the name of the game if he wants something specific, the category / categories of game he wants, some tags e.g. RPG, Co-op etc., as well as the platform he owns. 
 Then it shows all the games that contain the features that the user has set and can enter a game to see its features, description, ratings, etc. 
 Finally the user can add a game to his library or Wishlist of.
+
+![Mynexxtgame](https://user-images.githubusercontent.com/59802843/120295227-a0662680-c2cf-11eb-8704-d5d05b5a31b3.PNG)
+
